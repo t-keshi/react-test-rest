@@ -20,9 +20,9 @@ const params = {
 
 admin.initializeApp({ credential: admin.credential.cert(params) });
 
-const app = express();
+const firebaseapp = express();
 
-app.use(cors({ credentials: true }));
-router(app);
+firebaseapp.use(cors({ credentials: true }));
+router(firebaseapp);
 
-exports.api = functions.region('asia-northeast1').https.onRequest(app);
+exports.api = functions.region('asia-northeast1').https.onRequest(firebaseapp);

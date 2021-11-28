@@ -12,12 +12,17 @@ export const fetchProfile = async (
     undefined;
 
   if (userId === undefined) {
-    return res.status(401);
+    return res.status(401).end();
   }
 
-  const users = await getUser({ userId }).catch((err) => {
-    throw new Error(err);
+  const user = await getUser({ userId }).catch((err) => {
+    console.error(err);
+    return undefined;
   });
 
-  return res.status(200).send(users);
+  if (user === undefined) {
+    return res.status(500).end();
+  }
+
+  return res.status(200).send(user);
 };

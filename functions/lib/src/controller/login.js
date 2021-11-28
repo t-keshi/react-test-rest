@@ -5,9 +5,9 @@ exports.login = async (_, res) => {
     const oneDayToSeconds = 24 * 60 * 60;
     res.cookie('userId', 'abc-123', {
         maxAge: oneDayToSeconds,
-        httpOnly: true,
         secure: process.env.NODE_ENV === 'production' ? true : false,
+        httpOnly: true,
     });
-    return res.status(200);
+    return res.status(204).send('');
 };
 //# sourceMappingURL=login.js.map

@@ -1,16 +1,15 @@
 import express = require('express');
-import { User } from '../domain/user';
 
 export const login = async (
-  _: express.Request<unknown, User[]>,
-  res: express.Response<User[] | Error>,
+  _: express.Request<unknown, unknown>,
+  res: express.Response<unknown | Error>,
 ) => {
   const oneDayToSeconds = 24 * 60 * 60;
   res.cookie('userId', 'abc-123', {
     maxAge: oneDayToSeconds,
-    httpOnly: true,
     secure: process.env.NODE_ENV === 'production' ? true : false,
+    httpOnly: true,
   });
 
-  return res.status(200);
+  return res.status(204).send('');
 };

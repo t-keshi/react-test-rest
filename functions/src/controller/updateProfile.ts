@@ -16,7 +16,7 @@ export const updateProfile = async (
     undefined;
 
   if (userId === undefined) {
-    return res.status(401);
+    return res.status(401).end();
   }
 
   const { body } = req;
@@ -25,8 +25,9 @@ export const updateProfile = async (
     name: body.name,
     profile: body.profile,
   }).catch((err) => {
-    throw new Error(err);
+    console.error(err);
+    return res.status(500).end();
   });
 
-  return res.status(200);
+  return res.status(204).send('');
 };

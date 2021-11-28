@@ -22,8 +22,8 @@ const params = {
     clientC509CertUrl: serviceAccount_json_1.default.client_x509_cert_url,
 };
 admin.initializeApp({ credential: admin.credential.cert(params) });
-const app = express();
-app.use(cors({ credentials: true }));
-router_1.router(app);
-exports.api = functions.region('asia-northeast1').https.onRequest(app);
+const firebaseapp = express();
+firebaseapp.use(cors({ credentials: true }));
+router_1.router(firebaseapp);
+exports.api = functions.region('asia-northeast1').https.onRequest(firebaseapp);
 //# sourceMappingURL=index.js.map

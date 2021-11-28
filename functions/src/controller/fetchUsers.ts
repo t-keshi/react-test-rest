@@ -7,8 +7,13 @@ export const fetchUsers = async (
   res: express.Response<User[] | Error>,
 ) => {
   const users = await getAllUsers().catch((err) => {
-    throw new Error(err);
+    console.error(err);
+    return undefined;
   });
+
+  if (users === undefined) {
+    return res.status(500).end();
+  }
 
   return res.status(200).send(users);
 };
